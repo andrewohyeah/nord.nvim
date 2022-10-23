@@ -87,7 +87,7 @@ theme.loadEditor = function()
 		Folded = { fg = nord.nord3_gui, bg = nord.none, style = "italic" },
 		FoldColumn = { fg = nord.nord7_gui },
 		IncSearch = { fg = nord.nord6_gui, bg = nord.nord10_gui },
-		LineNr = { fg = nord.nord3_gui,
+		LineNr = { fg = nord.nord3_gui, },
 		CursorLineNr = { fg = nord.nord4_gui },
 		MatchParen = { fg = nord.nord15_gui, bg = nord.none, style = "bold" },
 		ModeMsg = { fg = nord.nord4_gui },
@@ -188,7 +188,7 @@ theme.loadEditor = function()
 
 	-- Options:
 
-	--Set transparent background
+	-- Set transparent background
 	if vim.g.nord_disable_background then
 		editor.Normal = { fg = nord.nord4_gui, bg = nord.none } -- normal text and background color
 		editor.SignColumn = { fg = nord.nord4_gui, bg = nord.none }
@@ -652,7 +652,7 @@ theme.loadPlugins = function()
 		HopUnmatched = { fg = nord.nord3_gui },
 
 		-- Fern
-		FernBranchText = { fg = nord.nord3_gui,
+		FernBranchText = { fg = nord.nord3_gui, },
 
 		-- nvim-ts-rainbow
 		rainbowcol1 = { fg = nord.nord15_gui },
@@ -671,7 +671,7 @@ theme.loadPlugins = function()
 		LightspeedShortcut = { fg = nord.nord10_gui, style = "bold" },
 		LightspeedShortcutOverlapped = { fg = nord.nord10_gui, style = "bold,underline" },
 		LightspeedMaskedChar = { fg = nord.nord4_gui, bg = nord.nord2_gui, style = "bold" },
-		LightspeedGreyWash = { fg = nord.nord3_gui,
+		LightspeedGreyWash = { fg = nord.nord3_gui },
 		LightspeedUnlabeledMatch = { fg = nord.nord4_gui, bg = nord.nord1_gui },
 		LightspeedOneCharMatch = { fg = nord.nord8_gui, style = "bold,reverse" },
 		LightspeedUniqueChar = { style = "bold,underline" },
