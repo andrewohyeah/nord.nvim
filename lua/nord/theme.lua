@@ -51,7 +51,7 @@ theme.loadSyntax = function()
 
 	-- Italic comments
 	if vim.g.nord_italic == false then
-		syntax.Comment = { fg = nord.nord3_gui_bright } -- normal comments
+		syntax.Comment = { fg = nord.nord3_gui } -- normal comments
 		syntax.Conditional = { fg = nord.nord9_gui } -- normal if, then, else, endif, switch, etc.
 		syntax.Function = { fg = nord.nord8_gui } -- normal function names
 		syntax.Identifier = { fg = nord.nord9_gui } -- any variable name
@@ -59,13 +59,13 @@ theme.loadSyntax = function()
 		syntax.Repeat = { fg = nord.nord9_gui } -- normal any other keyword
 		syntax.String = { fg = nord.nord14_gui } -- any string
 	else
-		syntax.Comment = { fg = nord.nord3_gui_bright, bg = nord.none, style = "italic" } -- italic comments
-		syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic if, then, else, endif, switch, etc.
-		syntax.Function = { fg = nord.nord8_gui, bg = nord.none, style = "italic" } -- italic funtion names
-		syntax.Identifier = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- any variable name
-		syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic for, do, while, etc.
-		syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none, style = "italic" } -- italic any other keyword
-		syntax.String = { fg = nord.nord14_gui, bg = nord.none, style = "italic" } -- any string
+		syntax.Comment = { fg = nord.nord3_gui, bg = nord.none, style = "italic" } -- italic comments
+		syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none } -- italic if, then, else, endif, switch, etc.
+		syntax.Function = { fg = nord.nord8_gui, bg = nord.none } -- italic funtion names
+		syntax.Identifier = { fg = nord.nord9_gui, bg = nord.none } -- any variable name
+		syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none } -- italic for, do, while, etc.
+		syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none } -- italic any other keyword
+		syntax.String = { fg = nord.nord14_gui, bg = nord.none } -- any string
 	end
 
 	return syntax
@@ -84,10 +84,10 @@ theme.loadEditor = function()
 		Directory = { fg = nord.nord7_gui, bg = nord.none }, -- directory names (and other special names in listings)
 		EndOfBuffer = { fg = nord.nord1_gui },
 		ErrorMsg = { fg = nord.none },
-		Folded = { fg = nord.nord3_gui_bright, bg = nord.none, style = "italic" },
+		Folded = { fg = nord.nord3_gui, bg = nord.none, style = "italic" },
 		FoldColumn = { fg = nord.nord7_gui },
 		IncSearch = { fg = nord.nord6_gui, bg = nord.nord10_gui },
-		LineNr = { fg = nord.nord3_gui_bright },
+		LineNr = { fg = nord.nord3_gui,
 		CursorLineNr = { fg = nord.nord4_gui },
 		MatchParen = { fg = nord.nord15_gui, bg = nord.none, style = "bold" },
 		ModeMsg = { fg = nord.nord4_gui },
@@ -330,7 +330,7 @@ theme.loadTreeSitter = function()
 
 	if vim.g.nord_italic == false then
 		-- Comments
-		treesitter.TSComment = { fg = nord.nord3_gui_bright }
+		treesitter.TSComment = { fg = nord.nord3_gui }
 		-- Conditionals
 		treesitter.TSConditional = { fg = nord.nord9_gui } -- For keywords related to conditionnals.
 		-- Function names
@@ -353,7 +353,7 @@ theme.loadTreeSitter = function()
 		treesitter.TSStringEscape = { fg = nord.nord15_gui } -- For escape characters within a string.
 		treesitter.TSCharacter = { fg = nord.nord14_gui } -- For characters.
 
-		treesitter["@comment"] = { fg = nord.nord3_gui_bright }
+		treesitter["@comment"] = { fg = nord.nord3_gui }
 		treesitter["@conditional"] = { fg = nord.nord9_gui }
 		treesitter["@function"] = { fg = nord.nord8_gui }
 		treesitter["@method"] = { fg = nord.nord7_gui }
@@ -372,7 +372,7 @@ theme.loadTreeSitter = function()
 		treesitter["@character"] = { fg = nord.nord14_gui }
 	else
 		-- Comments
-		treesitter.TSComment = { fg = nord.nord3_gui_bright, style = "italic" }
+		treesitter.TSComment = { fg = nord.nord3_gui, style = "italic" }
 		-- Conditionals
 		treesitter.TSConditional = { fg = nord.nord9_gui, style = "italic" } -- For keywords related to conditionnals.
 		-- Function names
@@ -395,7 +395,7 @@ theme.loadTreeSitter = function()
 		treesitter.TSStringEscape = { fg = nord.nord15_gui, style = "italic" } -- For escape characters within a string.
 		treesitter.TSCharacter = { fg = nord.nord14_gui, style = "italic" } -- For characters.
 
-		treesitter["@comment"] = { fg = nord.nord3_gui_bright, style = "italic" }
+		treesitter["@comment"] = { fg = nord.nord3_gui, style = "italic" }
 		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "italic" }
 		treesitter["@function"] = { fg = nord.nord8_gui, style = "italic" }
 		treesitter["@method"] = { fg = nord.nord8_gui, style = "italic" }
@@ -531,7 +531,7 @@ theme.loadPlugins = function()
 		GitSignsDelete = { fg = nord.nord11_gui }, -- diff mode: Deleted line |diff.txt|
 		GitSignsDeleteNr = { fg = nord.nord11_gui }, -- diff mode: Deleted line |diff.txt|
 		GitSignsDeleteLn = { fg = nord.nord11_gui }, -- diff mode: Deleted line |diff.txt|
-		GitSignsCurrentLineBlame = { fg = nord.nord3_gui_bright, style = "bold" },
+		GitSignsCurrentLineBlame = { fg = nord.nord3_gui, style = "bold" },
 
 		-- Telescope
 		TelescopePromptBorder = { fg = nord.nord8_gui },
@@ -652,7 +652,7 @@ theme.loadPlugins = function()
 		HopUnmatched = { fg = nord.nord3_gui },
 
 		-- Fern
-		FernBranchText = { fg = nord.nord3_gui_bright },
+		FernBranchText = { fg = nord.nord3_gui,
 
 		-- nvim-ts-rainbow
 		rainbowcol1 = { fg = nord.nord15_gui },
@@ -671,7 +671,7 @@ theme.loadPlugins = function()
 		LightspeedShortcut = { fg = nord.nord10_gui, style = "bold" },
 		LightspeedShortcutOverlapped = { fg = nord.nord10_gui, style = "bold,underline" },
 		LightspeedMaskedChar = { fg = nord.nord4_gui, bg = nord.nord2_gui, style = "bold" },
-		LightspeedGreyWash = { fg = nord.nord3_gui_bright },
+		LightspeedGreyWash = { fg = nord.nord3_gui,
 		LightspeedUnlabeledMatch = { fg = nord.nord4_gui, bg = nord.nord1_gui },
 		LightspeedOneCharMatch = { fg = nord.nord8_gui, style = "bold,reverse" },
 		LightspeedUniqueChar = { style = "bold,underline" },
