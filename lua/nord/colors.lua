@@ -61,4 +61,7 @@ else
 	nord.cursorlinefg = nord.nord1_gui
 end
 
+nord.visual = "#1E2430"
+nord.cursorline = "#292E39"
+
 return nord

@@ -5,10 +5,10 @@ local theme = {}
 theme.loadSyntax = function()
 	-- Syntax highlight groups
 	local syntax = {
-		Type = { fg = nord.nord9_gui }, -- int, long, char, etc.
+		Type = { fg = nord.nord7_gui }, -- int, long, char, etc.
 		StorageClass = { fg = nord.nord9_gui }, -- static, register, volatile, etc.
 		Structure = { fg = nord.nord9_gui }, -- struct, union, enum, etc.
-		Constant = { fg = nord.nord4_gui }, -- any constant
+		Constant = { fg = nord.nord15_gui }, -- any constant
 		Character = { fg = nord.nord14_gui }, -- any character constant: 'c', '\n'
 		Number = { fg = nord.nord15_gui }, -- a number constant: 5
 		Boolean = { fg = nord.nord9_gui }, -- a boolean constant: TRUE, false
@@ -114,12 +114,12 @@ theme.loadEditor = function()
 		TablineSel = { fg = nord.nord1_gui, bg = nord.nord9_gui },
 		Tabline = { fg = nord.nord4_gui, bg = nord.nord1_gui },
 		Title = { fg = nord.nord14_gui, bg = nord.none, style = "bold" },
-		Visual = { fg = nord.none, bg = nord.nord2_gui },
-		VisualNOS = { fg = nord.none, bg = nord.nord2_gui },
+		Visual = { fg = nord.none, bg = nord.visual },
+		VisualNOS = { fg = nord.none, bg = nord.visual },
 		WarningMsg = { fg = nord.nord15_gui },
 		WildMenu = { fg = nord.nord12_gui, bg = nord.none, style = "bold" },
-		CursorColumn = { fg = nord.none, bg = nord.cursorlinefg },
-		CursorLine = { fg = nord.none, bg = nord.cursorlinefg },
+		CursorColumn = { fg = nord.none, bg = nord.cursorline },
+		CursorLine = { fg = nord.none, bg = nord.cursorline },
 		ToolbarLine = { fg = nord.nord4_gui, bg = nord.nord1_gui },
 		ToolbarButton = { fg = nord.nord4_gui, bg = nord.none, style = "bold" },
 		NormalMode = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
@@ -243,7 +243,7 @@ theme.loadTreeSitter = function()
 
 	local treesitter = {
 		TSConstructor = { fg = nord.nord9_gui }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-		TSConstant = { fg = nord.nord13_gui }, -- For constants
+		TSConstant = { fg = nord.nord15_gui }, -- For constants
 		TSFloat = { fg = nord.nord15_gui }, -- For floats
 		TSNumber = { fg = nord.nord15_gui }, -- For all number
 
@@ -265,8 +265,8 @@ theme.loadTreeSitter = function()
 		TSPunctBracket = { fg = nord.nord8_gui }, -- For brackets and parens.
 		TSPunctSpecial = { fg = nord.nord8_gui }, -- For special punctutation that does not fall in the catagories before.
 		TSSymbol = { fg = nord.nord15_gui }, -- For identifiers referring to symbols or atoms.
-		TSType = { fg = nord.nord9_gui }, -- For types.
-		TSTypeBuiltin = { fg = nord.nord9_gui }, -- For builtin types.
+		TSType = { fg = nord.nord7_gui }, -- For types.
+		TSTypeBuiltin = { fg = nord.nord7_gui }, -- For builtin types.
 		TSTag = { fg = nord.nord4_gui }, -- Tags like html tag names.
 		TSTagDelimiter = { fg = nord.nord15_gui }, -- Tag delimiter like `<` `>` `/`
 		TSText = { fg = nord.nord4_gui }, -- For strings considenord11_gui text in a markup language.
@@ -279,7 +279,7 @@ theme.loadTreeSitter = function()
 		TSAnnotation = { fg = nord.nord11_gui }, -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
 
 		["@constructor"] = { fg = nord.nord9_gui },
-		["@constant"] = { fg = nord.nord13_gui },
+		["@constant"] = { fg = nord.nord15_gui },
 		["@float"] = { fg = nord.nord15_gui },
 		["@number"] = { fg = nord.nord15_gui },
 		["@attribute"] = { fg = nord.nord15_gui },
@@ -300,8 +300,8 @@ theme.loadTreeSitter = function()
 		["@punctuation.bracket"] = { fg = nord.nord8_gui },
 		["@punctuation.special"] = { fg = nord.nord8_gui },
 		["@symbol"] = { fg = nord.nord15_gui },
-		["@type"] = { fg = nord.nord9_gui },
-		["@type.builtin"] = { fg = nord.nord9_gui },
+		["@type"] = { fg = nord.nord7_gui },
+		["@type.builtin"] = { fg = nord.nord7_gui },
 		["@tag"] = { fg = nord.nord4_gui },
 		["@tag.delimiter"] = { fg = nord.nord15_gui },
 		["@text"] = { fg = nord.nord4_gui },

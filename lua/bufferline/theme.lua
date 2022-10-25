@@ -33,14 +33,18 @@ M.highlights = function(new_setting)
 			bg = fill,
 		},
 		background = {
+            italic = true,
 			bg = bg,
 		},
 
 		buffer_selected = {
+		    fg = fill,
 			bg = buffer_bg_selected,
-			italic = italic,
+			italic = false,
+			bold = true,
 		},
 		buffer_visible = {
+            fg = colors.nord3_gui,
 			bg = buffer_bg_visible,
 			italic = italic,
 		},
