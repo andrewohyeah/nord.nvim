@@ -1,5 +1,7 @@
 local nord = require("nord.colors")
 
+local pine = os.getenv('THEME') == 'rosepine'
+
 local theme = {}
 
 theme.loadSyntax = function()
@@ -8,7 +10,7 @@ theme.loadSyntax = function()
 		Type = { fg = nord.nord7_gui }, -- int, long, char, etc.
 		StorageClass = { fg = nord.nord9_gui }, -- static, register, volatile, etc.
 		Structure = { fg = nord.nord9_gui }, -- struct, union, enum, etc.
-		Constant = { fg = nord.nord15_gui }, -- any constant
+		Constant = { fg = pine and nord.nord8_gui or nord.nord15_gui }, -- any constant
 		Character = { fg = nord.nord14_gui }, -- any character constant: 'c', '\n'
 		Number = { fg = nord.nord15_gui }, -- a number constant: 5
 		Boolean = { fg = nord.nord9_gui }, -- a boolean constant: TRUE, false
@@ -57,7 +59,7 @@ theme.loadSyntax = function()
 		syntax.Identifier = { fg = nord.nord9_gui } -- any variable name
 		syntax.Keyword = { fg = nord.nord9_gui } -- normal for, do, while, etc.
 		syntax.Repeat = { fg = nord.nord9_gui } -- normal any other keyword
-		syntax.String = { fg = nord.nord14_gui } -- any string
+		syntax.String = { fg = pine and nord.nord12_gui or nord.nord14_gui } -- any string
 	else
 		syntax.Comment = { fg = nord.nord3_gui, bg = nord.none, style = "italic" } -- italic comments
 		syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none } -- italic if, then, else, endif, switch, etc.
@@ -65,7 +67,7 @@ theme.loadSyntax = function()
 		syntax.Identifier = { fg = nord.nord9_gui, bg = nord.none } -- any variable name
 		syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none, style = "bold" } -- italic for, do, while, etc.
 		syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none } -- italic any other keyword
-		syntax.String = { fg = nord.nord14_gui, bg = nord.none } -- any string
+		syntax.String = { fg = pine and nord.nord12_gui or nord.nord14_gui, bg = nord.none } -- any string
 	end
 
 	return syntax
@@ -76,7 +78,8 @@ theme.loadEditor = function()
 
 	local editor = {
 		NormalFloat = { fg = nord.nord4_gui, bg = nord.float }, -- normal text and background color
-		FloatBorder = { fg = nord.nord4_gui, bg = nord.float }, -- normal text and background color
+		--FloatBorder = { fg = nord.nord4_gui, bg = nord.float }, -- normal text and background color
+		FloatBorder = { fg = nord.nord2_gui, bg = nord.float }, -- normal text and background color
 		ColorColumn = { fg = nord.none, bg = nord.nord1_gui }, --  used for the columns set with 'colorcolumn'
 		Conceal = { fg = nord.nord1_gui }, -- placeholder characters substituted for concealed text (see 'conceallevel')
 		Cursor = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" }, -- the character under the cursor
@@ -93,10 +96,11 @@ theme.loadEditor = function()
 		ModeMsg = { fg = nord.nord4_gui },
 		MoreMsg = { fg = nord.nord4_gui },
 		NonText = { fg = nord.nord1_gui },
-		Pmenu = { fg = nord.nord4_gui, bg = nord.nord2_gui },
+		Pmenu = { fg = nord.nord4_gui, bg = "#1E2430" },
 		PmenuSel = { fg = nord.nord4_gui, bg = nord.nord10_gui },
-		PmenuSbar = { fg = nord.nord4_gui, bg = nord.nord2_gui },
-		PmenuThumb = { fg = nord.nord4_gui, bg = nord.nord4_gui },
+		PmenuSbar = { fg = nord.nord4_gui, bg = "#1E2430" },
+		--PmenuThumb = { fg = nord.nord4_gui, bg = nord.nord4_gui },
+		PmenuThumb = { fg = nord.nord4_gui, bg = "#1E2430" },
 		Question = { fg = nord.nord14_gui },
 		QuickFixLine = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
 		qfLineNr = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
@@ -114,7 +118,7 @@ theme.loadEditor = function()
 		TablineSel = { fg = nord.nord1_gui, bg = nord.nord9_gui },
 		Tabline = { fg = nord.nord4_gui, bg = nord.nord1_gui },
 		Title = { fg = nord.nord14_gui, bg = nord.none, style = "bold" },
-		Visual = { fg = nord.none, bg = nord.visual },
+		Visual = { fg = pine and nord.nord1_gui or nord.none , bg = nord.visual },
 		VisualNOS = { fg = nord.none, bg = nord.visual },
 		WarningMsg = { fg = nord.nord15_gui },
 		WildMenu = { fg = nord.nord12_gui, bg = nord.none, style = "bold" },
@@ -243,7 +247,7 @@ theme.loadTreeSitter = function()
 
 	local treesitter = {
 		TSConstructor = { fg = nord.nord9_gui }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
-		TSConstant = { fg = nord.nord15_gui }, -- For constants
+		TSConstant = { fg = pine and nord.nord8_gui or nord.nord15_gui }, -- For constants
 		TSFloat = { fg = nord.nord15_gui }, -- For floats
 		TSNumber = { fg = nord.nord15_gui }, -- For all number
 
@@ -279,7 +283,7 @@ theme.loadTreeSitter = function()
 		TSAnnotation = { fg = nord.nord11_gui }, -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
 
 		["@constructor"] = { fg = nord.nord9_gui },
-		["@constant"] = { fg = nord.nord15_gui },
+		["@constant"] = { fg = pine and nord.nord8_gui or nord.nord15_gui },
 		["@float"] = { fg = nord.nord15_gui },
 		["@number"] = { fg = nord.nord15_gui },
 		["@attribute"] = { fg = nord.nord15_gui },
@@ -312,6 +316,7 @@ theme.loadTreeSitter = function()
 		["@text.strong"] = { fg = nord.nord10_gui, bg = nord.none, style = "bold" },
 		["@text.literal"] = { fg = nord.nord4_gui },
 		["@text.uri"] = { fg = nord.nord14_gui },
+        --["@spell"] = { fg = nord.nord13_gui },
 
 		-- @todo Missing highlights
 		-- @function.call
@@ -348,7 +353,7 @@ theme.loadTreeSitter = function()
 		treesitter.TSKeywordOperator = { fg = nord.nord8_gui, style = "bold" }
 		treesitter.TSRepeat = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to loops.
 		-- Strings
-		treesitter.TSString = { fg = nord.nord14_gui } -- For strings.
+		treesitter.TSString = { fg = pine and nord.nord12_gui or nord.nord14_gui } -- For strings.
 		treesitter.TSStringRegex = { fg = nord.nord7_gui } -- For regexes.
 		treesitter.TSStringEscape = { fg = nord.nord15_gui } -- For escape characters within a string.
 		treesitter.TSCharacter = { fg = nord.nord14_gui } -- For characters.
@@ -356,17 +361,18 @@ theme.loadTreeSitter = function()
 		treesitter["@comment"] = { fg = nord.nord3_gui }
 		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
 		treesitter["@function"] = { fg = nord.nord8_gui, style = "bold" }
+		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
 		treesitter["@method"] = { fg = nord.nord7_gui }
 		treesitter["@function.builtin"] = { fg = nord.nord8_gui  }
 		treesitter["@namespace"] = { fg = nord.nord4_gui }
 		treesitter["@field"] = { fg = nord.nord4_gui }
 		treesitter["@property"] = { fg = nord.nord10_gui }
 		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold"  }
-		treesitter["@keyword.function"] = { fg = nord.nord8_gui, style = "bold"  }
+		treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold"  }
 		treesitter["@keyword.return"] = { fg = nord.nord8_gui, style = "bold"  }
 		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold"  }
 		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold"  }
-		treesitter["@string"] = { fg = nord.nord14_gui }
+		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
 		treesitter["@string.regex"] = { fg = nord.nord7_gui }
 		treesitter["@string.escape"] = { fg = nord.nord15_gui }
 		treesitter["@character"] = { fg = nord.nord14_gui }
@@ -390,7 +396,7 @@ theme.loadTreeSitter = function()
 		treesitter.TSKeywordOperator = { fg = nord.nord8_gui, style = "bold" }
 		treesitter.TSRepeat = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to loops.
 		-- Strings
-		treesitter.TSString = { fg = nord.nord14_gui} -- For strings.
+		treesitter.TSString = { fg = pine and nord.nord12_gui or nord.nord14_gui} -- For strings.
 		treesitter.TSStringRegex = { fg = nord.nord7_gui} -- For regexes.
 		treesitter.TSStringEscape = { fg = nord.nord15_gui} -- For escape characters within a string.
 		treesitter.TSCharacter = { fg = nord.nord14_gui} -- For characters.
@@ -398,17 +404,18 @@ theme.loadTreeSitter = function()
 		treesitter["@comment"] = { fg = nord.nord3_gui}
 		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
 		treesitter["@function"] = { fg = nord.nord8_gui, style = "bold" }
+		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
 		treesitter["@method"] = { fg = nord.nord8_gui}
 		treesitter["@function.builtin"] = { fg = nord.nord8_gui, style = "italic,bold" }
 		treesitter["@namespace"] = { fg = nord.nord4_gui}
 		treesitter["@field"] = { fg = nord.nord4_gui, style = "italic" }
 		treesitter["@property"] = { fg = nord.nord10_gui, style = "italic" }
 		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@keyword.function"] = { fg = nord.nord8_gui, style = "bold" }
+		treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold" }
 		treesitter["@keyword.return"] = { fg = nord.nord8_gui, style = "bold" }
 		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold" }
 		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@string"] = { fg = nord.nord14_gui}
+		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
 		treesitter["@string.regex"] = { fg = nord.nord7_gui}
 		treesitter["@string.escape"] = { fg = nord.nord15_gui}
 		treesitter["@character"] = { fg = nord.nord14_gui}
@@ -426,7 +433,7 @@ theme.loadFiletypes = function()
 		yamlBool = { link = "Boolean" },
 		yamlDocumentStart = { link = "Keyword" },
 		yamlTSField = { fg = nord.nord7_gui },
-		yamlTSString = { fg = nord.nord4_gui },
+		yamlTSString = { fg = pine and nord.nord12_gui or nord.nord14_gui },
 		yamlTSPunctSpecial = { link = "Keyword" },
 		yamlKey = { fg = nord.nord7_gui }, -- stephpy/vim-yaml
 	}
@@ -501,8 +508,8 @@ theme.loadPlugins = function()
 		diffAdded = { fg = nord.nord14_gui },
 		diffRemoved = { fg = nord.nord11_gui },
 		diffChanged = { fg = nord.nord15_gui },
-		diffOldFile = { fg = nord.yelow },
-		diffNewFile = { fg = nord.nord12_gui },
+		diffOldFile = { fg = nord.nord11_gui },
+		diffNewFile = { fg = nord.nord7_gui },
 		diffFile = { fg = nord.nord7_gui },
 		diffLine = { fg = nord.nord3_gui },
 		diffIndexLine = { fg = nord.nord9_gui },

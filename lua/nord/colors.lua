@@ -47,21 +47,33 @@ local light_colors = {
 local nord = (vim.o.background == "dark") and dark_colors or light_colors
 
 -- Enable contrast sidebars, floating windows and popup menus
-if vim.g.nord_contrast then
-	nord.sidebar = nord.nord1_gui
-	nord.float = nord.nord1_gui
-else
-	nord.sidebar = nord.nord0_gui
-	nord.float = nord.nord0_gui
-end
+--if vim.g.nord_contrast then
+--nord.sidebar = nord.nord1_gui
+	--nord.float = nord.nord1_gui
+--else
+	--nord.sidebar = nord.nord0_gui
+	--nord.float = nord.nord0_gui
+--end
 
 if vim.g.nord_cursorline_transparent then
-	nord.cursorlinefg = nord.nord0_gui
+    nord.cursorlinefg = nord.nord0_gui
 else
-	nord.cursorlinefg = nord.nord1_gui
+    nord.cursorlinefg = nord.nord1_gui
 end
 
-nord.visual = "#1E2430"
-nord.cursorline = "#292E39"
+if os.getenv('THEME') == 'rosepine' then
+--#191724
+    nord.sidebar = "#090714"
+    nord.float = "#090714"
+
+    nord.visual = "#ebbcba"
+    nord.cursorline = "#1f1d2e"
+else
+    nord.sidebar = "#1E2430"
+    nord.float = "#1E2430"
+
+    nord.visual = "#1E2430"
+    nord.cursorline = "#292E39"
+end
 
 return nord
