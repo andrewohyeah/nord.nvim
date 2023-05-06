@@ -7,9 +7,10 @@ local theme = {}
 theme.loadSyntax = function()
 	-- Syntax highlight groups
 	local syntax = {
+	    FzfLuaNormal = { fg = nord.nord15_gui },
 		Type = { fg = nord.nord7_gui }, -- int, long, char, etc.
 		StorageClass = { fg = nord.nord9_gui }, -- static, register, volatile, etc.
-		Structure = { fg = nord.nord9_gui }, -- struct, union, enum, etc.
+		Structure = { fg = nord.nord10_gui }, -- struct, union, enum, etc.
 		Constant = { fg = pine and nord.nord8_gui or nord.nord15_gui }, -- any constant
 		Character = { fg = nord.nord14_gui }, -- any character constant: 'c', '\n'
 		Number = { fg = nord.nord15_gui }, -- a number constant: 5
@@ -77,13 +78,17 @@ theme.loadEditor = function()
 	-- Editor highlight groups
 
 	local editor = {
+	    LazyH1 = { fg = nord.nord0_gui, bg = nord.nord13_gui },
 		NormalFloat = { fg = nord.nord4_gui, bg = nord.float }, -- normal text and background color
 		--FloatBorder = { fg = nord.nord4_gui, bg = nord.float }, -- normal text and background color
-		FloatBorder = { fg = nord.nord2_gui, bg = nord.float }, -- normal text and background color
+		--FloatBorder = { fg = nord.nord2_gui, bg = nord.float }, -- normal text and background color
+		FloatBorder = { fg = nord.float, bg = nord.float }, -- normal text and background color
 		ColorColumn = { fg = nord.none, bg = nord.nord1_gui }, --  used for the columns set with 'colorcolumn'
 		Conceal = { fg = nord.nord1_gui }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" }, -- the character under the cursor
-		CursorIM = { fg = nord.nord5_gui, bg = nord.none, style = "reverse" }, -- like Cursor, but used when in IME mode
+		--Cursor = { fg = '#000000', bg = nord.none, style = "reverse" }, -- the character under the cursor
+		Cursor = { fg = nord.modal, bg = nord.none, style = "reverse" }, -- the character under the cursor
+        --CursorIM = { fg = nord.nord5_gui, bg = nord.none, style = "reverse" }, -- like Cursor, but used when in IME mode
+        CursorIM = { fg = '#000000', bg = nord.none, style = "reverse" }, -- like Cursor, but used when in IME mode
 		Directory = { fg = nord.nord7_gui, bg = nord.none }, -- directory names (and other special names in listings)
 		EndOfBuffer = { fg = nord.nord1_gui },
 		ErrorMsg = { fg = nord.none },
@@ -96,11 +101,11 @@ theme.loadEditor = function()
 		ModeMsg = { fg = nord.nord4_gui },
 		MoreMsg = { fg = nord.nord4_gui },
 		NonText = { fg = nord.nord1_gui },
-		Pmenu = { fg = nord.nord4_gui, bg = "#1E2430" },
+		Pmenu = { fg = nord.nord4_gui, bg = nord.float },
 		PmenuSel = { fg = nord.nord4_gui, bg = nord.nord10_gui },
-		PmenuSbar = { fg = nord.nord4_gui, bg = "#1E2430" },
+		PmenuSbar = { fg = nord.nord4_gui, bg = nord.float },
 		--PmenuThumb = { fg = nord.nord4_gui, bg = nord.nord4_gui },
-		PmenuThumb = { fg = nord.nord4_gui, bg = "#1E2430" },
+		PmenuThumb = { fg = nord.nord4_gui, bg = nord.float },
 		Question = { fg = nord.nord14_gui },
 		QuickFixLine = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
 		qfLineNr = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
@@ -110,10 +115,12 @@ theme.loadEditor = function()
 		SpellCap = { fg = nord.nord7_gui, bg = nord.none, style = "italic,undercurl" },
 		SpellLocal = { fg = nord.nord8_gui, bg = nord.none, style = "italic,undercurl" },
 		SpellRare = { fg = nord.nord9_gui, bg = nord.none, style = "italic,undercurl" },
-		StatusLine = { fg = nord.nord4_gui, bg = nord.nord2_gui },
-		StatusLineNC = { fg = nord.nord4_gui, bg = nord.nord1_gui },
-		StatusLineTerm = { fg = nord.nord4_gui, bg = nord.nord2_gui },
-		StatusLineTermNC = { fg = nord.nord4_gui, bg = nord.nord1_gui },
+
+		StatusLine = { fg = nord.nord1_gui, bg = nord.nord0_gui },
+		StatusLineNC = { fg = nord.nord1_gui, bg = nord.nord0_gui },
+		StatusLineTerm = { fg = nord.nord1_gui, bg = nord.nord0_gui },
+		StatusLineTermNC = { fg = nord.nord1_gui, bg = nord.nord0_gui },
+
 		TabLineFill = { fg = nord.nord4_gui, bg = nord.none },
 		TablineSel = { fg = nord.nord1_gui, bg = nord.nord9_gui },
 		Tabline = { fg = nord.nord4_gui, bg = nord.nord1_gui },
@@ -203,7 +210,7 @@ theme.loadEditor = function()
 
 	-- Remove window split borders
 	if vim.g.nord_borders then
-		editor.VertSplit = { fg = nord.nord2_gui }
+		editor.VertSplit = { fg = nord.nord1_gui }
 	else
 		editor.VertSplit = { fg = nord.nord0_gui }
 	end
@@ -283,12 +290,13 @@ theme.loadTreeSitter = function()
 		TSAnnotation = { fg = nord.nord11_gui }, -- For C++/Dart attributes, annotations that can be attached to the code to denote some kind of meta information.
 
 		["@constructor"] = { fg = nord.nord9_gui },
-		["@constant"] = { fg = pine and nord.nord8_gui or nord.nord15_gui },
+        ["@constant"] = { fg = pine and nord.nord8_gui or nord.nord15_gui },
+		--["@constant"] = { fg = pine and nord.nord10_gui or nord.nord15_gui },
 		["@float"] = { fg = nord.nord15_gui },
 		["@number"] = { fg = nord.nord15_gui },
 		["@attribute"] = { fg = nord.nord15_gui },
 		["@variable"] = { fg = nord.nord4_gui, style = "bold" },
-		["@variable.builtin"] = { fg = nord.nord4_gui, style = "bold" },
+		["@variable.builtin"] = { fg =  nord.nord4_gui, style = "bold" },
 		["@variable.global"] = { fg = nord.nord4_gui, style = "bold" },
 		["@boolean"] = { fg = nord.nord9_gui, style = "bold" },
 		["@constant.builtin"] = { fg = nord.nord7_gui, style = "bold" },
@@ -316,7 +324,9 @@ theme.loadTreeSitter = function()
 		["@text.strong"] = { fg = nord.nord10_gui, bg = nord.none, style = "bold" },
 		["@text.literal"] = { fg = nord.nord4_gui },
 		["@text.uri"] = { fg = nord.nord14_gui },
+		["@lsp.type.property.lua"] = { link = "@variable" },
         --["@spell"] = { fg = nord.nord13_gui },
+        ["@type.qualifier.php"] = { link = "Keyword"},
 
 		-- @todo Missing highlights
 		-- @function.call
@@ -360,19 +370,22 @@ theme.loadTreeSitter = function()
 
 		treesitter["@comment"] = { fg = nord.nord3_gui }
 		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@function"] = { fg = nord.nord8_gui, style = "bold" }
+		treesitter["@function"] = { fg = nord.nord10_gui, style = "bold" }
 		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
+		treesitter["@method.call"] = { fg = nord.nord10_gui, style = "italic" }
 		treesitter["@method"] = { fg = nord.nord7_gui }
-		treesitter["@function.builtin"] = { fg = nord.nord8_gui  }
+		treesitter["@function.builtin"] = { fg = nord.nord10_gui  }
 		treesitter["@namespace"] = { fg = nord.nord4_gui }
 		treesitter["@field"] = { fg = nord.nord4_gui }
 		treesitter["@property"] = { fg = nord.nord10_gui }
 		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold"  }
-		treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold"  }
-		treesitter["@keyword.return"] = { fg = nord.nord8_gui, style = "bold"  }
+		--treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold"  }
+		treesitter["@keyword.function"] = { fg = pine and nord.nord10_gui or nord.nord8_gui, style = "bold"  }
+		treesitter["@keyword.return"] = { fg = nord.nord9_gui, style = "bold"  }
 		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold"  }
 		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold"  }
-		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
+		--treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
+		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord13_gui) }
 		treesitter["@string.regex"] = { fg = nord.nord7_gui }
 		treesitter["@string.escape"] = { fg = nord.nord15_gui }
 		treesitter["@character"] = { fg = nord.nord14_gui }
@@ -403,19 +416,22 @@ theme.loadTreeSitter = function()
 
 		treesitter["@comment"] = { fg = nord.nord3_gui}
 		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@function"] = { fg = nord.nord8_gui, style = "bold" }
+		treesitter["@function"] = { fg = nord.nord10_gui, style = "bold" }
 		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
+		treesitter["@method.call"] = { fg = nord.nord10_gui, style = "italic" }
 		treesitter["@method"] = { fg = nord.nord8_gui}
-		treesitter["@function.builtin"] = { fg = nord.nord8_gui, style = "italic,bold" }
+		treesitter["@function.builtin"] = { fg = nord.nord10_gui, style = "italic,bold" }
 		treesitter["@namespace"] = { fg = nord.nord4_gui}
 		treesitter["@field"] = { fg = nord.nord4_gui, style = "italic" }
 		treesitter["@property"] = { fg = nord.nord10_gui, style = "italic" }
 		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold" }
-		treesitter["@keyword.return"] = { fg = nord.nord8_gui, style = "bold" }
+		--treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold" }
+		treesitter["@keyword.function"] = { fg = pine and nord.nord10_gui or nord.nord8_gui, style = "bold"  }
+		treesitter["@keyword.return"] = { fg = nord.nord9_gui, style = "bold" }
 		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold" }
 		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
+		--treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
+		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord13_gui) }
 		treesitter["@string.regex"] = { fg = nord.nord7_gui}
 		treesitter["@string.escape"] = { fg = nord.nord15_gui}
 		treesitter["@character"] = { fg = nord.nord14_gui}
@@ -551,11 +567,12 @@ theme.loadPlugins = function()
 		-- NvimTree
 		NvimTreeRootFolder = { fg = nord.nord7_gui, style = "bold" },
 		NvimTreeGitDirty = { fg = nord.nord15_gui },
-		NvimTreeGitNew = { fg = nord.nord14_gui },
+		NvimTreeGitNew = { fg = nord.nord13_gui },
 		NvimTreeImageFile = { fg = nord.nord15_gui },
 		NvimTreeExecFile = { fg = nord.nord14_gui },
 		NvimTreeSpecialFile = { fg = nord.nord9_gui, style = "underline" },
-		NvimTreeFolderName = { fg = nord.nord10_gui },
+		NvimTreeFolderName = { fg = nord.nord10_gui, style = "bold" },
+		NvimTreeOpenedFolderName = { fg = nord.nord10_gui, style = "bold" },
 		NvimTreeEmptyFolderName = { fg = nord.nord1_gui },
 		NvimTreeFolderIcon = { fg = nord.nord4_gui },
 		NvimTreeIndentMarker = { fg = nord.nord1_gui },
@@ -578,7 +595,7 @@ theme.loadPlugins = function()
 		DiagnosticInformation = { fg = nord.nord10_gui },
 		DiagnosticHint = { fg = nord.nord9_gui },
 		DiagnosticTruncateLine = { fg = nord.nord4_gui },
-		LspFloatWinNormal = { bg = nord.nord2_gui },
+		LspFloatWinNormal = { bg = nord.float },
 		LspFloatWinBorder = { fg = nord.nord9_gui },
 		LspSagaBorderTitle = { fg = nord.nord8_gui },
 		LspSagaHoverBorder = { fg = nord.nord10_gui },
@@ -687,14 +704,16 @@ theme.loadPlugins = function()
 		CopilotLabel = { fg = nord.nord3_gui, bg = nord.none },
 
 		-- Statusline
-		StatusLineDull = { fg = nord.nord3_gui, bg = nord.nord1_gui },
+		StatusLineDull = { fg = nord.nord3_gui, bg = nord.nord0_gui },
 		StatusLineAccent = { fg = nord.nord0_gui, bg = nord.nord13_gui },
 
 		-- mini.nvim
 		MiniCompletionActiveParameter = { style = "underline" },
 
-		MiniCursorword = { bg = nord.nord3_gui },
-		MiniCursorwordCurrent = { bg = nord.nord3_gui },
+		--MiniCursorword = { bg = nord.nord3_gui, style = "underline" },
+		--MiniCursorwordCurrent = { bg = nord.nord3_gui },
+		MiniCursorword = { style = "underline" },
+		MiniCursorwordCurrent = { style = "underline" },
 
 		MiniIndentscopeSymbol = { fg = nord.nord10_gui },
 		MiniIndentscopePrefix = { style = "nocombine" }, -- Make it invisible

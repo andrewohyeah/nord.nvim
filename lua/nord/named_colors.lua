@@ -61,6 +61,8 @@ if os.getenv('THEME') == 'rosepine' then
 
         --16 colors
         black = "#191724", -- nord0 in palette
+        --black = "#14121f",
+        --black = "#14121f",
         --black = "#0e0d1a", -- nord0 in palette
         dark_gray = "#1f1d2e", -- nord1 in palette
         --dark_gray = "#26233a", -- nord1 in palette
@@ -70,7 +72,7 @@ if os.getenv('THEME') == 'rosepine' then
         light_gray = "#36334a",
         --light_gray_bright = '##575279',
         light_gray_bright = "#6e6a86", -- out of palette
-        darkest_white = "#6e6a86", 
+        darkest_white = "#6e6a86",
         --darker_white = "#b2b1b7", -- nord5 in palette
         --darker_white = '#6e6a86',
         darker_white = '#908caa',
@@ -91,7 +93,10 @@ if os.getenv('THEME') == 'rosepine' then
         orange = "#e5b6b4", -- nord12 in palette
         --orange = "#AC8A8D",
         --yellow = "#d6a677", -- nord13 in palette
-        yellow = "#f6c177",
+        --- og rosepine
+        --yellow = "#f6c177",
+        yellow = "#d6a157",
+        --yellow = "#ea9d34",
         --yellow = "#ebbcba",
         --green = "#41747f",
         green = "#31748f",
