@@ -2,6 +2,8 @@ local nord = require("nord.colors")
 
 local pine = os.getenv('THEME') == 'rosepine'
 
+local light = os.getenv('THEME') == 'light'
+
 local theme = {}
 
 theme.loadSyntax = function()
@@ -109,7 +111,7 @@ theme.loadEditor = function()
 		Question = { fg = nord.nord14_gui },
 		QuickFixLine = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
 		qfLineNr = { fg = nord.nord4_gui, bg = nord.none, style = "reverse" },
-		Search = { fg = nord.nord10_gui, bg = nord.nord6_gui, style = "reverse" },
+		Search = { fg = light and nord.nord7_gui or nord.nord10_gui, bg = nord.nord6_gui, style = "reverse" },
 		SpecialKey = { fg = nord.nord9_gui },
 		SpellBad = { fg = nord.nord11_gui, bg = nord.none, style = "italic,undercurl" },
 		SpellCap = { fg = nord.nord7_gui, bg = nord.none, style = "italic,undercurl" },
@@ -308,6 +310,7 @@ theme.loadTreeSitter = function()
 		["@label"] = { fg = nord.nord15_gui },
 		["@operator"] = { fg = nord.nord9_gui },
 		["@parameter"] = { fg = nord.nord10_gui },
+		["@variable.parameter"] = { fg = nord.nord10_gui },
 		["@punctuation.delimiter"] = { fg = nord.nord8_gui },
 		["@punctuation.bracket"] = { fg = nord.nord8_gui },
 		["@punctuation.special"] = { fg = nord.nord8_gui },

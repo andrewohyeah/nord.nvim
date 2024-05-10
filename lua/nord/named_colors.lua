@@ -106,4 +106,27 @@ if os.getenv('THEME') == 'rosepine' then
     }
 end
 
+if os.getenv('THEME') == 'light' then
+    nord = {
+        black = "#dddddd", -- nord0 in palette
+        dark_gray = "#bbbbbb", -- nord1 in palette
+        gray = "#999999", -- nord2 in palette
+        light_gray = "#777777",
+        light_gray_bright = "#666666", -- out of palette
+        darkest_white = "#444444",
+        darker_white = '#908caa',
+        white = "#111111", -- nord6 in palette
+        teal = "#049A96", -- nord7 in palette
+        off_blue = "#46435a",
+        glacier = "#9181A1", -- nord9 in palette
+        --blue = "#373259", -- parameter
+        blue = "#474269", -- parameter
+        red = "#cb4f72",
+        orange = "#c59694", -- nord12 in palette
+        yellow = "#966117",
+        green = "#11546f",
+        purple = "#a487c7",
+        none = "NONE",
+    }
+end
 return nord
