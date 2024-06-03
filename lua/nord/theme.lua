@@ -10,6 +10,7 @@ theme.loadSyntax = function()
 	-- Syntax highlight groups
 	local syntax = {
 	    FzfLuaNormal = { fg = nord.nord15_gui },
+	    FzfLuaBorder = { link = "Comment" },
 		Type = { fg = nord.nord7_gui }, -- int, long, char, etc.
 		StorageClass = { fg = nord.nord9_gui }, -- static, register, volatile, etc.
 		Structure = { fg = nord.nord10_gui }, -- struct, union, enum, etc.
@@ -218,6 +219,10 @@ theme.loadEditor = function()
 	end
 
 	editor.WinSeparator = { link = "VertSplit" }
+	editor.WinBar = { bg = nord.nord0_gui }
+	--editor.FloatBorder =  { link = "WinSeparator" }
+	editor.NormalFloat = { link = "Pmenu" }
+	editor.WinBarNc = { link = "WinBar" }
 
 	if vim.g.nord_uniform_diff_background then
 		editor.DiffAdd = { fg = nord.nord14_gui, bg = nord.nord1_gui } -- diff mode: Added line
