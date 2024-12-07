@@ -24,16 +24,6 @@ function util.onColorScheme()
 	end
 end
 
--- Change the background for the terminal, packer and qf windows
-util.contrast = function()
-	vim.cmd([[augroup nord]])
-	vim.cmd([[  autocmd!]])
-	vim.cmd([[  autocmd ColorScheme * lua require("nord.util").onColorScheme()]])
-	vim.cmd([[  autocmd TermOpen * setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
-	vim.cmd([[  autocmd FileType packer setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
-	vim.cmd([[  autocmd FileType qf setlocal winhighlight=Normal:NormalFloat,SignColumn:NormalFloat]])
-	vim.cmd([[augroup end]])
-end
 -- Loads the colors from the dictionary Object (colorSet)
 function util.loadColorSet(colorSet)
 	for group, colors in pairs(colorSet) do
@@ -80,11 +70,6 @@ function util.load()
 
 	-- load lsp highlights
 	util.loadColorSet(lsp)
-
-	-- if contrast is enabled, apply it to sidebars and floating windows
-	if vim.g.nord_contrast == true then
-		util.contrast()
-	end
 end
 
 return util

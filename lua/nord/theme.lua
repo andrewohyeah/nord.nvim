@@ -29,7 +29,7 @@ theme.loadSyntax = function()
 		Macro = { fg = nord.nord9_gui }, -- same as Define
 		Typedef = { fg = nord.nord9_gui }, -- A typedef
 		PreCondit = { fg = nord.nord13_gui }, -- preprocessor #if, #else, #endif, etc.
-		Special = { fg = nord.nord4_gui, style = "bold,underline" }, -- any special symbol
+		Special = { fg = nord.nord4_gui, style = "bold,italic" }, -- any special symbol
 		SpecialChar = { fg = nord.nord13_gui }, -- special character in a constant
 		Tag = { fg = nord.nord4_gui }, -- you can use CTRL-] on this
 		Delimiter = { fg = nord.nord6_gui }, -- character that needs attention like , or .
@@ -56,23 +56,13 @@ theme.loadSyntax = function()
 	}
 
 	-- Italic comments
-	if vim.g.nord_italic == false then
-		syntax.Comment = { fg = nord.nord3_gui } -- normal comments
-		syntax.Conditional = { fg = nord.nord9_gui } -- normal if, then, else, endif, switch, etc.
-		syntax.Function = { fg = nord.nord8_gui, style = "bold" } -- normal function names
-		syntax.Identifier = { fg = nord.nord9_gui } -- any variable name
-		syntax.Keyword = { fg = nord.nord9_gui } -- normal for, do, while, etc.
-		syntax.Repeat = { fg = nord.nord9_gui } -- normal any other keyword
-		syntax.String = { fg = pine and nord.nord12_gui or nord.nord14_gui } -- any string
-	else
-		syntax.Comment = { fg = nord.nord3_gui, bg = nord.none, style = "italic" } -- italic comments
-		syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none } -- italic if, then, else, endif, switch, etc.
-		syntax.Function = { fg = nord.nord8_gui, bg = nord.none, style = "bold" } -- italic funtion names
-		syntax.Identifier = { fg = nord.nord9_gui, bg = nord.none } -- any variable name
-		syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none, style = "bold" } -- italic for, do, while, etc.
-		syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none } -- italic any other keyword
-		syntax.String = { fg = pine and nord.nord12_gui or nord.nord14_gui, bg = nord.none } -- any string
-	end
+    syntax.Comment = { fg = nord.nord3_gui, bg = nord.none, style = "italic" } -- italic comments
+    syntax.Conditional = { fg = nord.nord9_gui, bg = nord.none } -- italic if, then, else, endif, switch, etc.
+    syntax.Function = { fg = nord.nord8_gui, bg = nord.none, style = "bold" } -- italic funtion names
+    syntax.Identifier = { fg = nord.nord9_gui, bg = nord.none } -- any variable name
+    syntax.Keyword = { fg = nord.nord9_gui, bg = nord.none, style = "bold" } -- italic for, do, while, etc.
+    syntax.Repeat = { fg = nord.nord9_gui, bg = nord.none } -- italic any other keyword
+    syntax.String = { fg = pine and nord.nord12_gui or nord.nord14_gui, bg = nord.none } -- any string
 
 	return syntax
 end
@@ -202,21 +192,11 @@ theme.loadEditor = function()
 
 	-- Options:
 
-	-- Set transparent background
-	if vim.g.nord_disable_background then
-		editor.Normal = { fg = nord.nord4_gui, bg = nord.none } -- normal text and background color
-		editor.SignColumn = { fg = nord.nord4_gui, bg = nord.none }
-	else
-		editor.Normal = { fg = nord.nord4_gui, bg = nord.nord0_gui } -- normal text and background color
-		editor.SignColumn = { fg = nord.nord4_gui, bg = nord.nord0_gui }
-	end
+	editor.Normal = { fg = nord.nord4_gui, bg = nord.nord0_gui } -- normal text and background color
+	editor.SignColumn = { fg = nord.nord4_gui, bg = nord.nord0_gui }
 
-	-- Remove window split borders
-	if vim.g.nord_borders then
-        editor.VertSplit = { fg = nord.nord1_gui }
-	else
-		editor.VertSplit = { fg = nord.nord0_gui }
-	end
+    -- borders
+    editor.VertSplit = { fg = nord.nord1_gui }
 
 	editor.WinSeparator = { link = "VertSplit" }
 	editor.WinBar = { bg = nord.nord0_gui }
@@ -337,6 +317,7 @@ theme.loadTreeSitter = function()
 		["@lsp.type.property.lua"] = { link = "@variable" },
         --["@spell"] = { fg = nord.nord13_gui },
         ["@type.qualifier.php"] = { link = "Keyword"},
+        ["@markup.raw.block"] = { style = "none" }
 
 		-- @todo Missing highlights
 		-- @function.call
@@ -353,99 +334,51 @@ theme.loadTreeSitter = function()
 		-- @string.special
 	}
 
-	if vim.g.nord_italic == false then
-		-- Comments
-		treesitter.TSComment = { fg = nord.nord3_gui }
-		-- Conditionals
-		treesitter.TSConditional = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to conditionnals.
-		-- Function names
-		treesitter.TSFunction = { fg = nord.nord8_gui, style = "bold" } -- For fuction (calls and definitions).
-		treesitter.TSMethod = { fg = nord.nord7_gui } -- For method calls and definitions.
-		treesitter.TSFuncBuiltin = { fg = nord.nord8_gui }
-		-- Namespaces and property accessors
-		treesitter.TSNamespace = { fg = nord.nord4_gui } -- For identifiers referring to modules and namespaces.
-		treesitter.TSField = { fg = nord.nord4_gui } -- For fields in literals
-		treesitter.TSProperty = { fg = nord.nord10_gui } -- Same as `TSField`
-		-- Language keywords
-		treesitter.TSKeyword = { fg = nord.nord9_gui, style = "bold" } -- For keywords that don't fall in other categories.
-		treesitter.TSKeywordFunction = { fg = nord.nord8_gui, style = "bold" }
-		treesitter.TSKeywordReturn = { fg = nord.nord8_gui, style = "bold" }
-		treesitter.TSKeywordOperator = { fg = nord.nord8_gui, style = "bold" }
-		treesitter.TSRepeat = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to loops.
-		-- Strings
-		treesitter.TSString = { fg = pine and nord.nord12_gui or nord.nord14_gui } -- For strings.
-		treesitter.TSStringRegex = { fg = nord.nord7_gui } -- For regexes.
-		treesitter.TSStringEscape = { fg = nord.nord15_gui } -- For escape characters within a string.
-		treesitter.TSCharacter = { fg = nord.nord14_gui } -- For characters.
+    -- Comments
+    treesitter.TSComment = { fg = nord.nord3_gui, style = "italic" }
+    -- Conditionals
+    treesitter.TSConditional = { fg = nord.nord9_gui, style = "italic" } -- For keywords related to conditionnals.
+    -- Function names
+    treesitter.TSFunction = { fg = nord.nord8_gui, style = "bold" } -- For fuction (calls and definitions).
+    treesitter.TSMethod = { fg = nord.nord7_gui } -- For method calls and definitions.
+    treesitter.TSFuncBuiltin = { fg = nord.nord8_gui, style = "italic,bold" }
+    -- Namespaces and property accessors
+    treesitter.TSNamespace = { fg = nord.nord4_gui } -- For identifiers referring to modules and namespaces.
+    treesitter.TSField = { fg = nord.nord4_gui, style = "italic" } -- For fields.
+    treesitter.TSProperty = { fg = nord.nord10_gui, style = "italic" } -- Same as `TSField`, but when accessing, not declaring.
+    -- Language keywords
+    treesitter.TSKeyword = { fg = nord.nord9_gui } -- For keywords that don't fall in other categories.
+    treesitter.TSKeywordFunction = { fg = nord.nord8_gui, style = "bold"}
+    treesitter.TSKeywordReturn = { fg = nord.nord8_gui, style = "bold" }
+    treesitter.TSKeywordOperator = { fg = nord.nord8_gui, style = "bold" }
+    treesitter.TSRepeat = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to loops.
+    -- Strings
+    treesitter.TSString = { fg = pine and nord.nord12_gui or nord.nord14_gui} -- For strings.
+    treesitter.TSStringRegex = { fg = nord.nord7_gui} -- For regexes.
+    treesitter.TSStringEscape = { fg = nord.nord15_gui} -- For escape characters within a string.
+    treesitter.TSCharacter = { fg = nord.nord14_gui} -- For characters.
 
-		treesitter["@comment"] = { fg = nord.nord3_gui }
-		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@function"] = { fg = nord.nord10_gui, style = "bold" }
-		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
-		treesitter["@method.call"] = { fg = nord.nord10_gui, style = "italic" }
-		treesitter["@method"] = { fg = nord.nord7_gui }
-		treesitter["@function.builtin"] = { fg = nord.nord10_gui  }
-		treesitter["@namespace"] = { fg = nord.nord4_gui }
-		treesitter["@field"] = { fg = nord.nord4_gui }
-		treesitter["@property"] = { fg = nord.nord10_gui }
-		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold"  }
-		--treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold"  }
-		treesitter["@keyword.function"] = { fg = pine and nord.nord10_gui or nord.nord8_gui, style = "bold"  }
-		treesitter["@keyword.return"] = { fg = nord.nord9_gui, style = "bold"  }
-		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold"  }
-		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold"  }
-		--treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
-		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord13_gui) }
-		treesitter["@string.regex"] = { fg = nord.nord7_gui }
-		treesitter["@string.escape"] = { fg = nord.nord15_gui }
-		treesitter["@character"] = { fg = nord.nord14_gui }
-	else
-		-- Comments
-		treesitter.TSComment = { fg = nord.nord3_gui, style = "italic" }
-		-- Conditionals
-		treesitter.TSConditional = { fg = nord.nord9_gui, style = "italic" } -- For keywords related to conditionnals.
-		-- Function names
-		treesitter.TSFunction = { fg = nord.nord8_gui, style = "bold" } -- For fuction (calls and definitions).
-		treesitter.TSMethod = { fg = nord.nord7_gui } -- For method calls and definitions.
-		treesitter.TSFuncBuiltin = { fg = nord.nord8_gui, style = "italic,bold" }
-		-- Namespaces and property accessors
-		treesitter.TSNamespace = { fg = nord.nord4_gui } -- For identifiers referring to modules and namespaces.
-		treesitter.TSField = { fg = nord.nord4_gui, style = "italic" } -- For fields.
-		treesitter.TSProperty = { fg = nord.nord10_gui, style = "italic" } -- Same as `TSField`, but when accessing, not declaring.
-		-- Language keywords
-		treesitter.TSKeyword = { fg = nord.nord9_gui } -- For keywords that don't fall in other categories.
-		treesitter.TSKeywordFunction = { fg = nord.nord8_gui, style = "bold"}
-		treesitter.TSKeywordReturn = { fg = nord.nord8_gui, style = "bold" }
-		treesitter.TSKeywordOperator = { fg = nord.nord8_gui, style = "bold" }
-		treesitter.TSRepeat = { fg = nord.nord9_gui, style = "bold" } -- For keywords related to loops.
-		-- Strings
-		treesitter.TSString = { fg = pine and nord.nord12_gui or nord.nord14_gui} -- For strings.
-		treesitter.TSStringRegex = { fg = nord.nord7_gui} -- For regexes.
-		treesitter.TSStringEscape = { fg = nord.nord15_gui} -- For escape characters within a string.
-		treesitter.TSCharacter = { fg = nord.nord14_gui} -- For characters.
-
-		treesitter["@comment"] = { fg = nord.nord3_gui}
-		treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@function"] = { fg = nord.nord10_gui, style = "bold" }
-		treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
-		treesitter["@method.call"] = { fg = nord.nord10_gui, style = "italic" }
-		treesitter["@method"] = { fg = nord.nord8_gui}
-		treesitter["@function.builtin"] = { fg = nord.nord10_gui, style = "italic,bold" }
-		treesitter["@namespace"] = { fg = nord.nord4_gui}
-		treesitter["@field"] = { fg = nord.nord4_gui, style = "italic" }
-		treesitter["@property"] = { fg = nord.nord10_gui, style = "italic" }
-		treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold" }
-		--treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold" }
-		treesitter["@keyword.function"] = { fg = pine and nord.nord10_gui or nord.nord8_gui, style = "bold"  }
-		treesitter["@keyword.return"] = { fg = nord.nord9_gui, style = "bold" }
-		treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold" }
-		treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold" }
-		--treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
-		treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord13_gui) }
-		treesitter["@string.regex"] = { fg = nord.nord7_gui}
-		treesitter["@string.escape"] = { fg = nord.nord15_gui}
-		treesitter["@character"] = { fg = nord.nord14_gui}
-	end
+    treesitter["@comment"] = { fg = nord.nord3_gui}
+    treesitter["@conditional"] = { fg = nord.nord9_gui, style = "bold" }
+    treesitter["@function"] = { fg = nord.nord10_gui, style = "bold" }
+    treesitter["@function.call"] = { fg = nord.nord15_gui, style = "bold" }
+    treesitter["@method.call"] = { fg = nord.nord10_gui, style = "italic" }
+    treesitter["@method"] = { fg = nord.nord8_gui}
+    treesitter["@function.builtin"] = { fg = nord.nord10_gui, style = "italic,bold" }
+    treesitter["@namespace"] = { fg = nord.nord4_gui}
+    treesitter["@field"] = { fg = nord.nord4_gui, style = "italic" }
+    treesitter["@property"] = { fg = nord.nord10_gui, style = "italic" }
+    treesitter["@keyword"] = { fg = nord.nord9_gui, style = "bold" }
+    --treesitter["@keyword.function"] = { fg = pine and nord.nord15_gui or nord.nord8_gui, style = "bold" }
+    treesitter["@keyword.function"] = { fg = pine and nord.nord10_gui or nord.nord8_gui, style = "bold"  }
+    treesitter["@keyword.return"] = { fg = nord.nord9_gui, style = "bold" }
+    treesitter["@keyword.operator"] = { fg = nord.nord8_gui, style = "bold" }
+    treesitter["@repeat"] = { fg = nord.nord9_gui, style = "bold" }
+    --treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord14_gui) }
+    treesitter["@string"] = { fg = (pine and nord.nord12_gui or nord.nord13_gui) }
+    treesitter["@string.regex"] = { fg = nord.nord7_gui}
+    treesitter["@string.escape"] = { fg = nord.nord15_gui}
+    treesitter["@character"] = { fg = nord.nord14_gui}
 
 	return treesitter
 end
@@ -830,20 +763,10 @@ theme.loadPlugins = function()
 		AerialTypeParameter = { fg = nord.nord10_gui },
 		AerialVariable = { fg = nord.nord4_gui, style = "bold" },
 	}
-	-- Options:
 
-	-- Disable nvim-tree background
-	if vim.g.nord_disable_background then
-		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }
-	else
-		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
-	end
-
-	if vim.g.nord_enable_sidebar_background then
-		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
-	else
-		plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }
-	end
+    -- plugins
+	plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.sidebar }
+	plugins.NvimTreeNormal = { fg = nord.nord4_gui, bg = nord.none }
 
 	return plugins
 end
