@@ -1,5 +1,6 @@
 local colors = {
 	black = "#2E3440", -- nord0 in palette
+	-- black = "#14161B",
 	dark_gray = "#3B4252", -- nord1 in palette
 	gray = "#434C5E", -- nord2 in palette
 	light_gray = "#4C566A", -- nord3 in palette
@@ -22,6 +23,10 @@ local colors = {
 if os.getenv('THEME') == 'rosepine' then
     colors = {
         black = "#191724", -- nord0 in palette
+	    --black = "#14161B",
+        --black = "#14121f",
+        --black = "#14121f",
+        --black = "#0e0d1a", -- nord0 in palette
         dark_gray = "#1f1d2e", -- nord1 in palette
         gray = "#36334a", -- nord2 in palette
         light_gray = "#36334a",
@@ -65,4 +70,9 @@ if os.getenv('THEME') == 'light' then
         none = "NONE",
     }
 end
+
+if os.getenv('THEME') == 'dark' then
+    colors.black = "#14161B"
+end
+
 return colors
