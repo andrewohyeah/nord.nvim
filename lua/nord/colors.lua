@@ -65,10 +65,10 @@ elseif os.getenv('THEME') == 'light' then
     nord.cursorline = "#aaaaaa"
     nord.darker  = nord.float
 elseif os.getenv('THEME') == 'dark' then
-    nord.visual = "#14161B"
+    nord.visual = "#000000"
     nord.sidebar = "#14161B"
-    nord.float = "#14161B"
-    nord.cursorline = "#14161B"
+    nord.float = "#000000"
+    nord.cursorline = "#040404"
     nord.darker = "#14161B"
 else
     nord.visual = "#1E2430"
